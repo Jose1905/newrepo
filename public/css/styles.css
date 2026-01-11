@@ -4,3 +4,246 @@
 *:after {
   box-sizing: border-box;
 }
+
+/********** Global Styles **********/
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('/images/site/small_check.jpg');
+  color: #333;
+  min-width: 400px;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+h2 {
+  margin: 0;
+}
+
+h3 {
+  margin: 0;
+}
+
+ul {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+img {
+  max-width: 100%;
+}
+
+/********** Wrapper Styles **********/
+#wrapper {
+  width: 80%;
+  margin: 10% auto;
+  margin-top: 50px;
+  background-color: white;
+  padding: 20px;
+  outline: #00b0bd solid 5px;
+  border-radius: 5px;
+}
+
+/********** Header Styles **********/
+header {
+  padding: 20px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: stretch;
+  grid-gap: 10px;
+}
+
+#tools {
+  align-self: center;
+}
+
+.siteName a {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+#tools a {
+  float: right;
+  font-size: 16px;
+}
+
+/********** Navigation Styles **********/
+nav {
+  background-color: #35424a;
+  color: #ffffff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+/********** Main Content Styles **********/
+main {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 5%;
+  row-gap: 25px;
+}
+
+/* First Row */
+.hero {
+  grid-column: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  flex-direction: column;
+}
+
+#hero-image {
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+.hero-description {
+  width: 30%;
+  background-color: white;
+  opacity: 0.8;
+  color: #008791;
+  margin-top: -40%;
+  font-size: 18px;
+  margin-left: 2%;
+  margin-bottom: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+#action-button {
+  margin: 10px;
+  padding: 10px;
+  background-color: #008791;
+}
+
+#action-button a {
+  color: white;
+  font-weight: bold;
+}
+
+/* Second Row */
+
+/* First Column */
+.upgrade-section {
+  grid-column: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 30px 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+.upgrade-section h2 {
+  grid-column: 1 / span 2;
+}
+
+.upgrade-card {
+  background-color: #c9f8f3;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  text-align: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.upgrade-card img {
+  width: auto;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.upgrade-card a {
+  text-decoration: underline;
+  color: #0d00bd;
+}
+
+/* Second Column */
+.review-section {
+  grid-column: 2;
+  display: grid;
+  grid-template-rows: 30px 1fr;
+  column-gap: 10px;
+}
+
+
+/********** Footer Styles **********/
+
+/********** Responsive Styles **********/
+@media (max-width: 900px) {
+  main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  
+  #wrapper {
+    margin: 0;
+    width: 100%;
+  }
+
+  nav ul {
+    font-size: 13px;
+  }
+
+  .hero {
+    grid-column: 1;
+  }
+
+  #hero-image {
+    width: 100%;
+  }
+
+  .hero-description {
+    width: 160px;
+    margin-bottom: 15%;
+  }
+
+  .hero-description h2 {
+    font-size: 22px;
+  }
+
+  .hero-description p {
+    font-size: 16px;
+  }
+
+  #action-button {
+    font-size: 14px;
+    margin: 5px;
+  padding: 5px;
+  }
+
+  .review-section {
+    grid-column: 1;
+    grid-row: 2;
+    height: 300px;
+  }
+
+  .upgrade-section {
+    grid-column: 1;
+    grid-row: 3;
+  }
+}
