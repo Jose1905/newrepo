@@ -14,3 +14,10 @@ node_modules
 
 # .DS_Store is only for Mac users
 **/.DS_Store
+
+# node_modules is a storage folder for Node and
+# can get very large.
+node_modules
+
+# ignore lock yaml file
+pnpm-lock.yaml
