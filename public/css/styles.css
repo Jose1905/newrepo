@@ -104,12 +104,20 @@ main {
 /* First Row */
 .hero {
   grid-column: 1 / span 2;
-  display: flex;
-  flex-direction: column;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+#hero-title {
+  grid-column: 1 / span 2;
 }
 
 #hero-image {
+  grid-column: 1 / span 2;
+  grid-row: 2;
   width: 80%;
   height: auto;
   margin: 0 auto;
@@ -117,17 +125,17 @@ main {
 }
 
 .hero-description {
-  width: 30%;
+  grid-column: 1;
+  grid-row: 2;
+  width: 50%;
   background-color: white;
   opacity: 0.8;
   color: #008791;
-  margin-top: -40%;
   font-size: 18px;
   margin-left: 2%;
-  margin-bottom: 25%;
   display: flex;
   flex-direction: column;
-  align-items: left;
+  justify-content: center;
 }
 
 #action-button {
@@ -217,11 +225,6 @@ main {
     width: 100%;
   }
 
-  .hero-description {
-    width: 160px;
-    margin-bottom: 15%;
-  }
-
   .hero-description h2 {
     font-size: 22px;
   }
@@ -233,7 +236,7 @@ main {
   #action-button {
     font-size: 14px;
     margin: 5px;
-  padding: 5px;
+    padding: 5px;
   }
 
   .review-section {
