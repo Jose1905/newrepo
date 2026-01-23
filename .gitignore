@@ -21,3 +21,6 @@ node_modules
 
 # ignore lock yaml file
 pnpm-lock.yaml
+
+# ignore debugging configurations
+launch.json
