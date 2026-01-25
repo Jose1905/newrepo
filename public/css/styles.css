@@ -10,7 +10,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-image: url('/images/site/small_check.jpg');
+  background-image: url("/images/site/small_check.jpg");
   color: #333;
   min-width: 400px;
 }
@@ -75,9 +75,9 @@ header {
 
 /********** Navigation Styles **********/
 nav {
+  line-height: 40px;
   background-color: #35424a;
   color: #ffffff;
-  padding: 10px 0;
   text-align: center;
 }
 
@@ -90,12 +90,11 @@ nav ul {
 }
 
 nav ul li {
-  padding: 10px 0;
   flex: 1;
 }
 
 nav ul li:hover {
-  background-color: #00A7B3;
+  background-color: #00a7b3;
   cursor: pointer;
 }
 
@@ -103,7 +102,8 @@ nav ul li a {
   color: #ffffff;
   font-size: 18px;
   font-weight: bold;
-} 
+  display: block;
+}
 
 /********** Main Content Styles **********/
 main {
@@ -156,7 +156,7 @@ main {
 #action-button {
   margin: 10px;
   padding: 10px;
-  background-color: #00A7B3;
+  background-color: #00a7b3;
   font-weight: bold;
   font-size: 20px;
 }
@@ -209,7 +209,6 @@ main {
   column-gap: 10px;
 }
 
-
 /********** Footer Styles **********/
 
 /********** Car list Styles **********/
@@ -217,7 +216,11 @@ main {
   width: 100%;
   border-collapse: collapse;
   display: table;
-} 
+}
+
+#inv-display a {  
+  display: block;
+}
 
 #inv-display li {
   outline: #00b0bd solid 5px;
@@ -238,6 +241,42 @@ main {
   display: none;
 }
 
+/************ Vehicle detail Styles **********/
+#vehicleImage {
+  width: 100%;
+  height: auto;
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#vehicleImage img {
+  width: 100%;
+  height: auto;
+}
+
+.vehicleDetails {
+  width: 100%;
+  border-collapse: collapse;
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.vehicleDetails ul {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  list-style: none;
+  padding: 0px;
+}
+
+.vehicleDetails ul li {
+  padding: 10px;
+}
+
+.vehicleDetails ul li:nth-child(odd) {
+  background-color: #edfcfa;
+}
+
 /********** Responsive Styles **********/
 @media (max-width: 900px) {
   main {
@@ -245,7 +284,7 @@ main {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
   }
-  
+
   #wrapper {
     margin: 0;
     width: 100%;
@@ -256,10 +295,10 @@ main {
   }
 
   nav ul li a {
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: bold;
-} 
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+  }
 
   .hero {
     grid-column: 1;
@@ -291,6 +330,16 @@ main {
 
   .upgrade-section {
     grid-column: 1;
+    grid-row: 3;
+  }
+
+  #vehicleImage {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+  }
+
+  .vehicleDetails {
+    grid-column: 1 / span 2;
     grid-row: 3;
   }
 }
