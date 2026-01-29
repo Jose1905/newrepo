@@ -38,4 +38,11 @@ invCont.buildByInvId = async function (req, res, next) {
   })
 }
 
+/* ***************************
+ *  Build error view
+ * ************************** */
+invCont.throwError = async function (req, res) {
+  throw new Error("I am an intentional error");
+}
+
 module.exports = invCont

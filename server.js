@@ -14,7 +14,6 @@ const app = express();
 const static = require("./routes/static");
 const baseController = require("./controllers/baseController");
 const inventoryRoute = require("./routes/inventoryRoute");
-const detailRoute = require("./routes/detailRoute");
 
 /* ***********************
  * View Engine and Templates
@@ -30,9 +29,7 @@ app.use(require("./routes/static"));
 // Index route
 app.get("/", utilities.handleErrors(baseController.buildHome));
 // Inventory routes
-app.use("/inv", utilities.handleErrors(inventoryRoute));
-// Details routes
-app.use("/inv/detail", utilities.handleErrors(detailRoute));
+app.use("/inv", inventoryRoute);
 
 /* ***********************
  * File not foud route - must be last route in list
