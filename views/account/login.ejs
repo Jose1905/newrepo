@@ -1,0 +1,22 @@
+<!-- Display the title if it exists, otherwise redirect to home -->
+<% if (title) { %>
+<h1>
+  <%- messages() %>
+  <%= title %>
+</h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<form>
+  <label for="account_email">Email:</label><br>
+  <input type="text" id="account_email" name="account_email" required><br>
+  <label for="account_password">Password:</label><br>
+  <input type="password" id="account_password" name="account_password" required>
+  <input type="submit" value="Login" class="submit-button">
+  
+  <p>
+    No account?
+    <a href="./register" id="sign-up">Sign-up</a>
+  </p>
+</form>

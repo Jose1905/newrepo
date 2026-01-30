@@ -105,6 +105,13 @@ nav ul li a {
   display: block;
 }
 
+/********** Notice styles ****************/
+.notice {
+  background-color: rgba(255, 188, 188, 0.8);
+  list-style: none;
+  padding: 10px;
+}
+
 /********** Main Content Styles **********/
 main {
   padding: 20px;
@@ -275,6 +282,42 @@ main {
 
 .vehicleDetails ul li:nth-child(odd) {
   background-color: #edfcfa;
+}
+
+/********** Form Styles ***************/
+form {
+  grid-column: 1 / span 2;
+  grid-row: 2;
+  padding: 30px;
+  border-radius: 5px;
+  display: flex;
+
+  flex-direction: column;
+  background-color: #b0d9dc;
+  justify-self: center;
+}
+
+input {
+  margin-bottom: 20px;
+}
+
+.submit-button {
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  background-color: #008791;
+  font-weight: bold;
+  font-size: medium;
+}
+
+#pswdBtn {
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 2px;
+  margin-top: 1em;
+  font-size: small;
+  width: 7em;
+  text-align: center;
 }
 
 /********** Responsive Styles **********/
