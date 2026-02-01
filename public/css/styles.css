@@ -225,7 +225,7 @@ main {
   display: table;
 }
 
-#inv-display a {  
+#inv-display a {
   display: block;
 }
 
@@ -318,6 +318,16 @@ input {
   font-size: small;
   width: 7em;
   text-align: center;
+}
+
+input:required:invalid,
+input:focus:invalid {
+  background-color: rgb(255, 181, 181);
+}
+
+input:required:valid,
+input:focus:valid {
+  background-color: rgb(181, 255, 181);
 }
 
 /********** Responsive Styles **********/
