@@ -39,10 +39,62 @@ invCont.buildByInvId = async function (req, res, next) {
 }
 
 /* ***************************
+ *  Build Inventory Management view
+ * ************************** */
+async function buildInvManagement (req, res, next) {
+  let nav = await utilities.getNav();
+  res.render("./inventory/management", {
+    title: "Inventory Management",
+    nav,
+    errors: null,
+  })
+}
+
+/* ***************************
+ *  Build Add Classification view
+ * ************************** */
+async function buildAddClassification (req, res, next) {
+  let nav = await utilities.getNav();
+  res.render("./inventory/addClassification", {
+    title: "Add Classification",
+    nav,
+    errors: null,
+  })
+}
+
+/* ****************************************
+ *  Process Classification addition
+ * *************************************** */
+async function addClassification(req, res) {
+  let nav = await utilities.getNav();
+  const { classification_name } = req.body;  
+  const regResult = await invModel.addClassification(
+    classification_name
+  );
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `Congratulations, you added classification ${classification_name}.`,
+    );
+    res.status(201).render("/", {
+      title: "Home",
+      nav,
+    });
+  } else {
+    req.flash("notice", "Sorry, the registration failed.");
+    res.status(501).render("inventory/addClassification", {
+      title: "Add Classification",
+      nav,
+    });
+  }
+}
+
+/* ***************************
  *  Build error view
  * ************************** */
 invCont.throwError = async function (req, res) {
   throw new Error("I am an intentional error");
 }
 
-module.exports = invCont
+module.exports = { invCont, addClassification, buildAddClassification, buildInvManagement };
