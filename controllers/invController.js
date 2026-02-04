@@ -62,6 +62,20 @@ async function buildAddClassification (req, res, next) {
   })
 }
 
+/* ***************************
+ *  Build Add Inventory view
+ * ************************** */
+async function buildAddInventory (req, res, next) {
+  let nav = await utilities.getNav();
+  let dropDown = await utilities.buildClassificationDropDown();
+  res.render("./inventory/addInventory", {
+    title: "Add Inventory",
+    nav,
+    dropDown,
+    errors: null,
+  })
+}
+
 /* ****************************************
  *  Process Classification addition
  * *************************************** */
@@ -77,14 +91,45 @@ async function addClassification(req, res) {
       "notice",
       `Congratulations, you added classification ${classification_name}.`,
     );
-    res.status(201).render("/", {
-      title: "Home",
-      nav,
-    });
+    res.redirect("/inv/")
   } else {
     req.flash("notice", "Sorry, the registration failed.");
     res.status(501).render("inventory/addClassification", {
       title: "Add Classification",
+      nav,
+    });
+  }
+}
+
+/* ****************************************
+ *  Process Inventory addition
+ * *************************************** */
+async function addInventory(req, res) {
+  let nav = await utilities.getNav();
+  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body;  
+  const regResult = await invModel.addInventory(
+    classification_id, 
+    inv_make, 
+    inv_model, 
+    inv_description, 
+    inv_image, 
+    inv_thumbnail, 
+    inv_price, 
+    inv_year, 
+    inv_miles, 
+    inv_color
+  );
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `Congratulations, you added ${inv_make} ${inv_model} ${inv_year}.`,
+    );
+    res.redirect("/inv/")
+  } else {
+    req.flash("notice", "Sorry, the registration failed.");
+    res.status(501).render("inventory/addInventory", {
+      title: "Add Inventory",
       nav,
     });
   }
@@ -97,4 +142,4 @@ invCont.throwError = async function (req, res) {
   throw new Error("I am an intentional error");
 }
 
-module.exports = { invCont, addClassification, buildAddClassification, buildInvManagement };
+module.exports = { invCont, addClassification, buildAddClassification, buildInvManagement, buildAddInventory, addInventory };

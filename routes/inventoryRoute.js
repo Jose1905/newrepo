@@ -16,11 +16,23 @@ router.get("/", utilities.handleErrors(invController.buildInvManagement))
 // Route to build add Classification view
 router.get("/addClassification", utilities.handleErrors(invController.buildAddClassification))
 
+// Route to build add Inventory view
+router.get("/addInventory", utilities.handleErrors(invController.buildAddInventory))
+
+// Route to add the classification to the database
 router.post(
     "/addClassification",
     invValidate.addClassificationRules(),
     invValidate.checkAddClassificationData,
     utilities.handleErrors(invController.addClassification)
+)
+
+// Route to add the inventory to the database
+router.post(
+    "/addInventory",
+    invValidate.addInventoryRules(),
+    invValidate.checkAddInventoryData,
+    utilities.handleErrors(invController.addInventory)
 )
 
 // Route to build add Inventory view

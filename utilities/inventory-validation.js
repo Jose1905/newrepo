@@ -25,8 +25,66 @@ validate.addClassificationRules = () => {
   ];
 };
 
+/*  **********************************
+ *  Add Inventory Data Validation Rules
+ * ********************************* */
+validate.addInventoryRules = () => {
+  return [
+    // Make: min 3 characters
+    body("inv_make")
+      .trim()
+      .isLength({ min: 3 })
+      .withMessage("Make must be at least 3 characters long"),
+
+    // Model: min 3 characters
+    body("inv_model")
+      .trim()
+      .isLength({ min: 3 })
+      .withMessage("Model must be at least 3 characters long"),
+
+    // Description: 1–250 characters
+    body("inv_description")
+      .trim()
+      .isLength({ min: 1, max: 250 })
+      .withMessage("Description must be between 1 and 250 characters"),
+
+    // Image path: min 3 characters
+    body("inv_image")
+      .trim()
+      .isLength({ min: 3 })
+      .withMessage("Image path must be at least 3 characters"),
+
+    // Thumbnail path: min 3 characters
+    body("inv_thumbnail")
+      .trim()
+      .isLength({ min: 3 })
+      .withMessage("Thumbnail path must be at least 3 characters"),
+
+    // Price: decimal or integer, must be positive
+    body("inv_price")
+      .isFloat({ min: 0 })
+      .withMessage("Price must be a positive number"),
+
+    // Year: 4-digit year between 1800 and 2099
+    body("inv_year")
+      .isInt({ min: 1800, max: 2099 })
+      .withMessage("Year must be a valid 4-digit year"),
+
+    // Miles: integer between 0 and 3,250,000
+    body("inv_miles")
+      .isInt({ min: 0, max: 3250000 })
+      .withMessage("Miles must be between 0 and 3,250,000"),
+
+    // Color: required, letters & spaces only (optional tightening)
+    body("inv_color")
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage("Color is required")
+  ]
+};
+
 /* ******************************
- * Check data and return errors or continue
+ * Check data and return errors in clasification data or continue
  * ***************************** */
 validate.checkAddClassificationData = async (req, res, next) => {
   const { classification_name } = req.body;
@@ -39,6 +97,37 @@ validate.checkAddClassificationData = async (req, res, next) => {
       title: "Add Classification",
       nav,
       classification_name,
+    });
+    return;
+  }
+  next();
+};
+
+/* ******************************
+ * Check data and return errors in inventory data or continue
+ * ***************************** */
+validate.checkAddInventoryData = async (req, res, next) => {
+  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body;
+  let errors = [];
+  errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    let dropDown = await utilities.buildClassificationDropDown();
+    res.render("inventory/addInventory", {
+      errors,
+      title: "Add Inventory",
+      nav,
+      dropDown,
+      classification_id, 
+      inv_make, 
+      inv_model, 
+      inv_description, 
+      inv_image, 
+      inv_thumbnail, 
+      inv_price, 
+      inv_year, 
+      inv_miles, 
+      inv_color
     });
     return;
   }
