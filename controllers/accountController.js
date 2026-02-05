@@ -4,12 +4,18 @@ const accountModel = require("../models/account-model");
 const bcrypt = require("bcryptjs");
 // const pswdBtn = document.querySelector("#pswdBtn"); Unable to retrieve the pswdBtn element
 
-async function buildLogin(req, res) {
+const acctCont = {}
+
+acctCont.buildLogin = async function (req, res, next) {
   const nav = await utilities.getNav();
-  res.render("account/login", { title: "Login", nav });
+  res.render("account/login", {
+    title: "Login",
+    nav,
+    errors: null,
+  });
 }
 
-async function buildRegister(req, res, next) {
+acctCont.buildRegister = async function (req, res, next) {
   const nav = await utilities.getNav();
   res.render("account/register", {
     title: "Register",
@@ -21,7 +27,7 @@ async function buildRegister(req, res, next) {
 /* ****************************************
  *  Process Registration
  * *************************************** */
-async function registerAccount(req, res) {
+acctCont.registerAccount = async function (req, res, next) {
   let nav = await utilities.getNav();
   const {
     account_firstname,
@@ -88,4 +94,4 @@ async function registerAccount(req, res) {
 
 pswdBtn.addEventListener("click", togglePassword(pswdBtn)); */
 
-module.exports = { buildLogin, buildRegister, registerAccount };
+module.exports = acctCont;

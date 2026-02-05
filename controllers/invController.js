@@ -41,7 +41,7 @@ invCont.buildByInvId = async function (req, res, next) {
 /* ***************************
  *  Build Inventory Management view
  * ************************** */
-async function buildInvManagement (req, res, next) {
+invCont.buildInvManagement = async function (req, res, next) {
   let nav = await utilities.getNav();
   res.render("./inventory/management", {
     title: "Inventory Management",
@@ -53,7 +53,7 @@ async function buildInvManagement (req, res, next) {
 /* ***************************
  *  Build Add Classification view
  * ************************** */
-async function buildAddClassification (req, res, next) {
+invCont.buildAddClassification = async function (req, res, next) {
   let nav = await utilities.getNav();
   res.render("./inventory/addClassification", {
     title: "Add Classification",
@@ -65,7 +65,7 @@ async function buildAddClassification (req, res, next) {
 /* ***************************
  *  Build Add Inventory view
  * ************************** */
-async function buildAddInventory (req, res, next) {
+invCont.buildAddInventory = async function (req, res, next) {
   let nav = await utilities.getNav();
   let dropDown = await utilities.buildClassificationDropDown();
   res.render("./inventory/addInventory", {
@@ -79,7 +79,7 @@ async function buildAddInventory (req, res, next) {
 /* ****************************************
  *  Process Classification addition
  * *************************************** */
-async function addClassification(req, res) {
+invCont.addClassification = async function (req, res) {
   let nav = await utilities.getNav();
   const { classification_name } = req.body;  
   const regResult = await invModel.addClassification(
@@ -104,20 +104,20 @@ async function addClassification(req, res) {
 /* ****************************************
  *  Process Inventory addition
  * *************************************** */
-async function addInventory(req, res) {
+invCont.addInventory = async function (req, res) {
   let nav = await utilities.getNav();
   const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body;  
   const regResult = await invModel.addInventory(
-    classification_id, 
-    inv_make, 
-    inv_model, 
-    inv_description, 
-    inv_image, 
-    inv_thumbnail, 
-    inv_price, 
-    inv_year, 
-    inv_miles, 
-    inv_color
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id,
   );
 
   if (regResult) {
@@ -142,4 +142,4 @@ invCont.throwError = async function (req, res) {
   throw new Error("I am an intentional error");
 }
 
-module.exports = { invCont, addClassification, buildAddClassification, buildInvManagement, buildAddInventory, addInventory };
+module.exports = invCont;

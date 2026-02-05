@@ -9,14 +9,14 @@ const validate = {};
 validate.addClassificationRules = () => {
   return [
     // Classification name is required and must not contain spaces nor special characters.
-    body("classificaition_name")
+    body("classification_name")
       .trim()
       .notEmpty()
       .matches(/^[a-zA-Z0-9]+$/)
       .isLength({ min: 1 })
-      .custom(async (classificaition_name) => {
+      .custom(async (classification_name) => {
         const classificationExists =
-        await invModel.checkExistingClassification(classificaition_name);
+        await invModel.checkExistingClassification(classification_name);
         if (classificationExists) {
         throw new Error("Classification exists. Please enter a different classification name");
         }
