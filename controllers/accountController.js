@@ -70,12 +70,14 @@ acctCont.registerAccount = async function (req, res, next) {
     res.status(201).render("account/login", {
       title: "Login",
       nav,
+      errors: null,
     });
   } else {
     req.flash("notice", "Sorry, the registration failed.");
     res.status(501).render("account/register", {
       title: "Registration",
       nav,
+      errors: null,
     });
   }
 }
@@ -124,13 +126,10 @@ acctCont.accountLogin = async function (req, res) {
 
 acctCont.buildAccountManagement = async function (req, res, next) {
   const nav = await utilities.getNav();
-  const { account_email } = req.body
-  const account = await accountModel.getAccountByEmail(account_email)
   res.render("account/management", {
     title: "Account Management",
     nav,
     errors: null,
-    account,
   });
 }
 
