@@ -109,12 +109,13 @@ Util.buildVehicleDetailsGrid = async function (data) {
 /* **************************************
  * Build the classification drop-down
  * ************************************ */
-Util.buildClassificationList = async function (req, res, next) {
+Util.buildClassificationList = async function (class_id) {
   let data = await invModel.getClassifications();
-  let dropDown = `<select name="classification_id" id="classificationList" value="$<%= locals.classification_id %>" required>`;
+  let dropDown = `<select name="classification_id" id="classificationList" required>`;
   if (data.rows.length > 0) {
     data.rows.forEach((row) => {
-      dropDown += `<option value="${row.classification_id}">${row.classification_name}</option>`;
+      const selected = row.classification_id === class_id ? "selected" : "";
+      dropDown += `<option value="${row.classification_id}" ${selected}>${row.classification_name}</option>`;
     });
   }
   dropDown += "</select>";
