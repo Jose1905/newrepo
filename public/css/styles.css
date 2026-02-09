@@ -297,7 +297,8 @@ form {
   justify-self: center;
 }
 
-input, select {
+input,
+select {
   flex: 1;
   margin-bottom: 20px;
   height: 60px;
@@ -358,6 +359,73 @@ input:focus:valid {
   }
 }
 
+/********** Inventory list Styles **********/
+#classificationList {
+  width: 100%;
+  max-width: 300px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 2rem;
+  background-color: #ffffff;
+}
+
+#classificationList:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#inventoryDisplay thead {
+  background-color: #35424a;
+  color: #ffffff;
+}
+
+#inventoryDisplay th,
+#inventoryDisplay td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+#inventoryDisplay tbody tr:nth-child(even) {
+  background-color: #f3f4f6;
+}
+
+#inventoryDisplay tbody tr:hover {
+  background-color: #e5e7eb;
+}
+
+#inventoryDisplay a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#inventoryDisplay a[href*="edit"] {
+  color: #2563eb;
+}
+
+#inventoryDisplay a[href*="edit"]:hover {
+  text-decoration: underline;
+}
+
+#inventoryDisplay a[href*="delete"] {
+  color: #dc2626;
+}
+
+#inventoryDisplay a[href*="delete"]:hover {
+  text-decoration: underline;
+}
 
 /********** Responsive Styles **********/
 @media (max-width: 900px) {
