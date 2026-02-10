@@ -16,7 +16,7 @@
 } %>
 
 <p>All fields are required</p>
-<form action="/inv/update" method="post">
+<form action="/inv/update" method="post" id="updateForm">
   <label for="classification_id">Classification:</label>
   <%- classificationSelect %>
 
@@ -47,5 +47,11 @@
   <label for="inv_color">Color:</label>
   <input type="text" name="inv_color" id="invModifyColor" required value="<%= locals.inv_color %>">
   
-  <input type="submit" value="Modify Inventory" class="submit-button">
+  <input type="submit" value="Modify Inventory" class="submit-button" disabled>
+
+  <input type="hidden" name="inv_id"
+    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
 </form>
+
+<script src="/js/inv-update.js"></script>

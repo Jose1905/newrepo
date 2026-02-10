@@ -16,9 +16,11 @@ validate.addClassificationRules = () => {
       .isLength({ min: 1 })
       .custom(async (classification_name) => {
         const classificationExists =
-        await invModel.checkExistingClassification(classification_name);
+          await invModel.checkExistingClassification(classification_name);
         if (classificationExists) {
-        throw new Error("Classification exists. Please enter a different classification name");
+          throw new Error(
+            "Classification exists. Please enter a different classification name",
+          );
         }
       })
       .withMessage("Please provide a valid Classification name"), // on error this message is sent.
@@ -79,8 +81,8 @@ validate.addInventoryRules = () => {
     body("inv_color")
       .trim()
       .isLength({ min: 1 })
-      .withMessage("Color is required")
-  ]
+      .withMessage("Color is required"),
+  ];
 };
 
 /* ******************************
@@ -107,7 +109,18 @@ validate.checkAddClassificationData = async (req, res, next) => {
  * Check data and return errors in inventory data or continue
  * ***************************** */
 validate.checkAddInventoryData = async (req, res, next) => {
-  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id } = req.body;
+  const {
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id,
+  } = req.body;
   let errors = [];
   errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -118,16 +131,61 @@ validate.checkAddInventoryData = async (req, res, next) => {
       title: "Add Inventory",
       nav,
       dropDown,
-      classification_id, 
-      inv_make, 
-      inv_model, 
-      inv_description, 
-      inv_image, 
-      inv_thumbnail, 
-      inv_price, 
-      inv_year, 
-      inv_miles, 
-      inv_color
+      classification_id,
+      inv_make,
+      inv_model,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_year,
+      inv_miles,
+      inv_color,
+    });
+    return;
+  }
+  next();
+};
+
+/* ******************************
+ * Errors will be directed back to the edit view.
+ * ***************************** */
+validate.checkUpdateData = async (req, res, next) => {
+  const {
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id,
+    inv_id,
+  } = req.body;
+  let errors = [];
+  errors = validationResult(req);
+  const itemName = `${inv_make} ${inv_model}`;
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    let dropDown = await utilities.buildClassificationList();
+    res.render("inventory/edit-Inventory", {
+      errors,
+      title: "Edit " + itemName,
+      nav,
+      dropDown,
+      classification_id,
+      inv_make,
+      inv_model,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_year,
+      inv_miles,
+      inv_color,
+      inv_id,
     });
     return;
   }
