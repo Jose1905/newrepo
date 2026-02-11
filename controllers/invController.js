@@ -304,11 +304,11 @@ invCont.deleteInventory = async function (req, res, next) {
       title: "Delete " + itemName,
       nav,
       errors: null,
-      inv_id: itemData.inv_id,
-      inv_make: itemData.inv_make,
-      inv_model: itemData.inv_model,
-      inv_year: itemData.inv_year,
-      inv_price: itemData.inv_price,
+      inv_id: inv_id,
+      inv_make: inv_make,
+      inv_model: inv_model,
+      inv_year: inv_year,
+      inv_price: inv_price,
     });
   }
 };
